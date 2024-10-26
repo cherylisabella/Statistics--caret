@@ -1,6 +1,6 @@
-# Multiple Regression using caret
+# Regression and Classification Models using caret
 
-About 2 years ago, I was tasked with compiling a multiple regression analysis for a Statistics course at university. We were free to choose whatever software we wanted, so I chose to use my newly acquired R skills for the paper.
+About 2 years ago, I was tasked with compiling an analytics paper for a Statistics course at university. We were free to choose whatever software we wanted, so I chose to use my newly acquired R skills for the paper.
 
 ![Photo courtesy of Wolfram K from Pexels](https://github.com/cherylisabella/rollercoasters-caret/blob/main/image%20files/pexels-wolfram-k-804115.jpg?raw=true)
 
@@ -14,13 +14,13 @@ Theme parks are big businesses. In the United States alone, there are nearly 500
 
 The original dataset contains 16 variables, and short descriptions for some of the variables are given:
 
-Track indicates what kind of track the roller coaster has. The possible values are “Wood” and “Steel.”
-Duration is the duration of the ride in seconds.
-Speed is top speed in miles per hour.
-Height is the maximum height above ground level in feet.
-Drop is the greatest drop in feet.
-Length is the total length of the track in feet.
-Inversions reports whether riders are turned upside down during the ride. It has the values 1 (yes) and 0 (no). Some coasters have multiple inversions.
+- Track indicates what kind of track the roller coaster has. The possible values are “Wood” and “Steel.”
+- Duration is the duration of the ride in seconds.
+- Speed is top speed in miles per hour.
+- Height is the maximum height above ground level in feet.
+- Drop is the greatest drop in feet.
+- Length is the total length of the track in feet.
+- Inversions reports whether riders are turned upside down during the ride. It has the values 1 (yes) and 0 (no). Some coasters have multiple inversions.
 
 ## Goal
 
@@ -51,6 +51,7 @@ Results: Since the target variable is Speed, intepretations of relationships bet
 - Duration has a moderate positive linear relationship with Speed (correlation coefficient = 0.43499920).
 - Numinversions has a weak positive linear relationship with Speed (correlation coefficient = 0.35334778).
 - Opened shows virtually no relationship with Speed (correlation coefficient = -0.01563838).
+
 Most of the results make sense as one can expect factors like maximum height above ground level in feet and duration of the ride to inform the (top) Speed of a rollercoaster. Similarly, one would expect the year a rollercoaster is opened to have little effect on its top Speed. An interesting finding is that numinversions has a weak positive linear relationship with Speed. This is as a rollercoaster finishes an inversion, it would usually speed up (due to gravity and inertia).
 
 2. EDA for qualitative variables:
@@ -136,7 +137,10 @@ The dotplot above shows that variance CART is the smallest. It also shows that t
 Since CART is suggested to be the most accurate in predicting for speed, model assumptions for this specific model will be checked. The only assumption made by decision trees is that the data is independently and identically distributed(iid). Since each rollercoaster is unique, the speed of one rollercoaster is not expected to be dependent on the speed of another rollercoaster and each variable can be assumed to have the same probability distribution as the others, the iid assumption can be assumed to be met.
 
 ## Comparison of best models from each modelling technique:
-When using caret, the linear model would be the best regression model for predicting speed while the CART model would be the best classification model. The 4 most significant predictors for the linear regression model are (in decreasing rank) height, length, flag_inversions and flag_construction. The 4 most significant predictors for the CART classification model are (in decreasing rank) height, length, duration and numinversions.
+When using caret, the linear model would be the best regression model for predicting speed while the CART model would be the best classification model. 
+
+- The 4 most significant predictors for the linear regression model are (in decreasing rank) height, length, flag_inversions and flag_construction.
+- The 4 most significant predictors for the CART classification model are (in decreasing rank) height, length, duration and numinversions.
 
 ## Conclusion:
 The most important finding through constructing and evaluating different models is that height and length are always the most significant predictors for speed, regardless of model used. This finding would be especially useful for rollercoaster manufacturers who wish to know which variables to focus on in order to produce the fastest rollercoaster(s) for coaster fans. The duration, presence of inversions, number of inversions, and material used to construct the tracks are also significant design considerations that should be noted.
